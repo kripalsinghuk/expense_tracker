@@ -1,3 +1,4 @@
+import 'package:expense_tracer/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracer/models/expese.dart';
 import 'package:flutter/material.dart';
 
@@ -24,10 +25,7 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         children: [
           Text('The Chart'),
-          ListView.builder(
-            itemBuilder: (context, index) =>
-                Text(_registeredExpenses[index].id),
-          ),
+          Expanded(child: ExpensesList(expenses: _registeredExpenses)),
         ],
       ),
     );
