@@ -27,10 +27,26 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  void updateList(Expense submittedExpense) {
+    setState(() {
+      _registeredExpenses.add(submittedExpense);
+    });
+  }
+
+  void removeItemFromList(Expense expense) {
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+  }
+
   //When in state class the context there in behind by flutter.
   //When we see builder we must provide function.
   void _openAddExpenseOverlay() {
-    showModalBottomSheet(context: context, builder: (ctx) => NewExpense());
+    showModalBottomSheet(
+      isScrollControlled: true, //model overlay take full possible height..
+      context: context,
+      builder: (ctx) => NewExpense(updateExpenseList: updateList),
+    );
   }
 
   @override
@@ -45,7 +61,12 @@ class _ExpensesState extends State<Expenses> {
       body: Column(
         children: [
           Text('The Chart'),
-          Expanded(child: ExpensesList(expenses: _registeredExpenses)),
+          Expanded(
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+              removeExpense: removeItemFromList,
+            ),
+          ),
         ],
       ),
     );
