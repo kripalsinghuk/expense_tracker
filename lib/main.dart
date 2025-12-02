@@ -1,5 +1,6 @@
 import 'package:expense_tracer/widgets/expenses.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 //k is golobal notation for theme related things.
 var kColorScheme = ColorScheme.fromSeed(
@@ -11,6 +12,10 @@ var kDarkColorScheme = ColorScheme.fromSeed(
   seedColor: Color.fromARGB(255, 5, 99, 125),
 );
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
+  //   fn,
+  // ) {
   runApp(
     MaterialApp(
       darkTheme: ThemeData.dark().copyWith(
@@ -59,4 +64,5 @@ void main() {
       home: Expenses(),
     ),
   );
+  // });
 }
